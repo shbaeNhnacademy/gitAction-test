@@ -8,6 +8,7 @@ class IndexControllerTest {
 
     @Test
     void index() {
+        System.out.println();
     }
 
     @Test
