@@ -15,4 +15,9 @@ public class IndexController {
     public String home() {
         return "home";
     }
+
+    @GetMapping("/text")
+    public String text() {
+        return "text";
+    }
 }
