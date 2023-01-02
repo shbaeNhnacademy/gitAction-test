@@ -42,7 +42,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script_stop: true
-          script: "./start.sh"
+          script: "bash start.sh"
 
       - name: Run SonarQube
         run: mvn sonar:sonar -Dsonar.projectKey=githubaction-suhan -Dsonar.host.url=${{secrets.SONAR_HOST}} -Dsonar.login=${{secrets.SONAR_TOKEN}}
