@@ -23,8 +23,18 @@ jobs:
       - name: Build with Maven
         run: mvn -B package --file pom.xml
 
-      - name: Run SonarQube
-        run: mvn sonar:sonar -Dsonar.projectKey=jenkins-test-suhan -Dsonar.host.url=${{secrets.SONAR_HOST}} -Dsonar.login=${{secrets.SONAR_TOKEN}}
+      - uses: actions/checkout@v2
+      - name: Donwload build artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: build
+          path: build/classes
+      - name: SonarQube Scan
+        uses: kitabisa/sonarqube-action@master
+        with:
+          host: ${{ secrets.SONAR_HOST }}
+          login: ${{ secrets.SONAR_TOKEN }}
+          projectBaseDir: "/github/workspace"
 
       - name: upload file
         uses: appleboy/scp-action@master
